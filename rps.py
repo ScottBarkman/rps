@@ -13,6 +13,9 @@ comp_sequence_weight = 1.2
 # how deep to look for sequences
 layersdeep = 3
 
+#how many hands in a row to start mixing things up
+heat_detection = 3
+
 player_history = my_history =  ''
 player_wins = 0
 playerscore = 0
@@ -81,13 +84,26 @@ while True:
                     for l in layercounts:
                         layer_percentages[l] = (float(layercounts[l])/float(len(positions)))*100
 
+
+            # heat_meter few wins in a row? they're adapting!!
+            heatscore = 0
+            for i in range(1, heat_detection):
+                if int(score['%s%s'%(player_history[-i:], my_throw[-i:])])
+                heatscore += 1
+
+
             rank = sorted(layer_percentages.items(), key=operator.itemgetter(1))
 
             suggested_throw[beat_lookup[rank[-1][0]]]+=(rank[-1][1])*((float(0)/float(10))+(comp_sequence_weight))
 
+
             sorted_suggested = sorted(suggested_throw.items(), key=operator.itemgetter(1))
             # print sorted_suggested
-            my_throw = sorted_suggested[2][0]
+
+            if heatscore == heat_detection:
+                my_throw = beat_lookup(sorted_suggested[2][0])
+            else:
+                my_throw = sorted_suggested[2][0]
         else:
             my_throw = random.choice(options)
 
