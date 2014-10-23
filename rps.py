@@ -27,7 +27,10 @@ throw_percentages = {'r': 30, 's': 35, 'p': 35}
 suggested_throw = {'r': 0, 's': 0, 'p':0}
 
 
-
+print " ========================= "
+print "         WELCOME"
+print " Choose 'r', 'p' or 's'    "
+print " ========================= "
 while True:
     # choose what to throw
     player_throw = raw_input('> ').lower()
@@ -103,11 +106,11 @@ while True:
 
         if roundscore > 0:
 
-            print str('You -> '+colors['win']+' - '+colors['lose']+' <- Me ('+playercolor+')') % (player_throw.upper(), my_throw.upper(), playerscore)
+            print str('You -> '+colors['win']+' - '+colors['lose']+' <- Me (Score: '+playercolor+')') % (player_throw.upper(), my_throw.upper(), playerscore)
         elif roundscore < 0:
-            print str('You -> '+colors['lose']+' - '+colors['win']+' <- Me ('+playercolor+')') % (player_throw.upper(), my_throw.upper(), playerscore)
+            print str('You -> '+colors['lose']+' - '+colors['win']+' <- Me (Score: '+playercolor+')') % (player_throw.upper(), my_throw.upper(), playerscore)
         else:
-            print str('You -> %s - %s <- Me ('+playercolor+')') % (player_throw.upper(), my_throw.upper(), playerscore)
+            print str('You -> %s - %s <- Me (Score: '+playercolor+')') % (player_throw.upper(), my_throw.upper(), playerscore)
 
 
     elif player_throw == 'debug':
