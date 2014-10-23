@@ -87,9 +87,10 @@ while True:
 
             # heat_meter few wins in a row? they're adapting!!
             heatscore = 0
-            for i in range(1, heat_detection):
-                if int(score['%s%s'%(player_history[-i:], my_throw[-i:])])
-                heatscore += 1
+            # for i in range(1, heat_detection):
+            #     print i
+            #     if int(score['%s%s' % (player_history[-i:1], my_history[-i:1])]):
+            #         heatscore += 1
 
 
             rank = sorted(layer_percentages.items(), key=operator.itemgetter(1))
