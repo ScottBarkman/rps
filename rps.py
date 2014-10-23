@@ -14,7 +14,7 @@ comp_sequence_weight = 1.2
 layersdeep = 3
 
 player_history = my_history =  ''
-
+player_wins = 0
 playerscore = 0
 scores = {'you': 0, 'me': 0}
 colors = {'lose' : '\033[91m%s\033[0m', 'win': '\033[92m%s\033[0m'}
@@ -96,6 +96,11 @@ while True:
 
 
         roundscore = int(score['%s%s'%(player_throw, my_throw)])
+        if roundscore > 0:
+            player_wins += 1
+
+        playerpercentage = "%.2f" % (100*float(player_wins)/len(player_history))
+
         playerscore += roundscore
         if playerscore > 0:
             playercolor = colors['win']
@@ -106,11 +111,11 @@ while True:
 
         if roundscore > 0:
 
-            print str('You -> '+colors['win']+' - '+colors['lose']+' <- Me (Score: '+playercolor+')') % (player_throw.upper(), my_throw.upper(), playerscore)
+            print str('You -> '+colors['win']+' - '+colors['lose']+' <- Me (Score: '+playercolor+' - %s%%)') % (player_throw.upper(), my_throw.upper(), playerscore, playerpercentage)
         elif roundscore < 0:
-            print str('You -> '+colors['lose']+' - '+colors['win']+' <- Me (Score: '+playercolor+')') % (player_throw.upper(), my_throw.upper(), playerscore)
+            print str('You -> '+colors['lose']+' - '+colors['win']+' <- Me (Score: '+playercolor+' - %s%%)') % (player_throw.upper(), my_throw.upper(), playerscore, playerpercentage)
         else:
-            print str('You -> %s - %s <- Me (Score: '+playercolor+')') % (player_throw.upper(), my_throw.upper(), playerscore)
+            print str('You -> %s - %s <- Me (Score: '+playercolor+' - %s%%)') % (player_throw.upper(), my_throw.upper(), playerscore, playerpercentage)
 
 
     elif player_throw == 'debug':
